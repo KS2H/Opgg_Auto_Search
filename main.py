@@ -24,3 +24,6 @@ driver.find_element(By.NAME, 'password').send_keys(op_pw)
 time.sleep(0.1)
 driver.find_element(By.CSS_SELECTOR, '#root > div > div > div > div.member-card-layout__inner > div > form > button.member-button.login__btn').click()
 time.sleep(1)
+
+# search main
+driver.find_element(By.XPATH, '//*[@id="__next"]/header/div[3]/nav/ul/li[2]/a').click()
