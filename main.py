@@ -27,3 +27,9 @@ time.sleep(1)
 
 # search main
 driver.find_element(By.XPATH, '//*[@id="__next"]/header/div[3]/nav/ul/li[2]/a').click()
+answer = input("상대의 챔피언 이름을 입력하세요")
+if answer == "가렌":
+    driver.find_element(By.XPATH, '//*[@id="content-container"]/div[2]/aside/nav/ul/li[1]/a').click()
+    driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[2]/div/div/ul[1]/li[1]').click()
+    driver.find_element(By.XPATH, '//*[@id="content-container"]/main/div[1]/div/div/div[3]/a').click()    
+    driver.find_element(By.XPATH, '//*[@id="content-header"]/div[2]/div/a[1]').click()
