@@ -3,10 +3,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
-# Account
-op_id = (open('id.txt', 'r')).readlines(0)[0]
-op_pw = (open('password.txt', 'r')).readlines(0)[0]
+from chamList import getChamLists
 
 # Chrome Driver
 chrome_options = webdriver.ChromeOptions()
@@ -15,6 +12,10 @@ chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 driver.implicitly_wait(5)
+
+# Account
+op_id = (open('id.txt', 'r')).readlines(0)[0]
+op_pw = (open('password.txt', 'r')).readlines(0)[0]
 
 # Login
 driver.get('https://member.op.gg/?redirect_url=//www.op.gg/')
@@ -26,13 +27,12 @@ driver.find_element(By.CSS_SELECTOR, '#root > div > div > div > div.member-card-
 time.sleep(1)
 
 # search main
-driver.find_element(By.XPATH, '//*[@id="__next"]/header/div[3]/nav/ul/li[2]/a').click()
-answer = input('상대의 챔피언 이름을 입력하세요')
-chamlist = ['가렌','갈리오','갱플랭크']
-i = str(chamlist.index(answer)+1)
-cham = '//*[@id="content-container"]/div[2]/aside/nav/ul/li[',i,']/a'
-print(cham)
+driver.get('https://www.op.gg/champions')
+chamlist = getChamLists(driver)
+answer = input('상대의 챔피언 이름을 입력하세요 : ')
+search = str(chamlist.index(answer)+1)
+cham = '//*[@id="content-container"]/div[2]/aside/nav/ul/li[' + search + ']/a'
 driver.find_element(By.XPATH, cham).click()
-driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[2]/div/div/ul[1]/li[1]').click()
-driver.find_element(By.XPATH, '//*[@id="content-container"]/main/div[1]/div/div/div[3]/a').click()    
-driver.find_element(By.XPATH, '//*[@id="content-header"]/div[2]/div/a[1]').click()
+driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[2]/h3/a').click()
+driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[1]/div[2]/table/thead/tr/th[3]').click()   
+driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[1]/div[2]/table/thead/tr/th[3]').click()
