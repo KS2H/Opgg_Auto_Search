@@ -36,3 +36,6 @@ driver.find_element(By.XPATH, cham).click()
 driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[2]/h3/a').click()
 driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[1]/div[2]/table/thead/tr/th[3]').click()   
 driver.find_element(By.XPATH, '//*[@id="content-container"]/aside/div[1]/div[2]/table/thead/tr/th[3]').click()
+
+# information output
+driver.find_element(By.XPATH, '//*[@id="content-container"]/main/div[1]/div/div/div[3]/a').click()
